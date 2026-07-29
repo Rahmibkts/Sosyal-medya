@@ -1,0 +1,8 @@
+{
+  "name": "SocialPulse AI - Sosyal Medya İçerik Stüdyosu",
+  "description": "Yapay zeka ile sosyal medya gönderileri ve açıklamaları hazırlama, düzenleme ve planlama SaaS platformu",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
