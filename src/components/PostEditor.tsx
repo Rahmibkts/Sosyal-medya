@@ -23,7 +23,9 @@ export const PostEditor: React.FC<PostEditorProps> = ({
   const [scheduledDate, setScheduledDate] = useState(
     currentPost.scheduledDate || new Date().toISOString().split('T')[0]
   );
-  const [scheduledTime, setScheduledTime] = useState('12:00');
+  const [scheduledTime, setScheduledTime] = useState(
+    (currentPost as Partial<ScheduledPost>).scheduledTime || '12:00'
+  );
   const [status, setStatus] = useState<ContentStatus>(currentPost.status || 'taslak');
   const [rawHashtags, setRawHashtags] = useState<string>(
     (currentPost.hashtags || []).join(' ')
@@ -50,6 +52,14 @@ export const PostEditor: React.FC<PostEditorProps> = ({
   const [isListening, setIsListening] = useState(false);
   const [speechError, setSpeechError] = useState<string | null>(null);
   const recognitionRef = useRef<any>(null);
+
+  React.useEffect(() => {
+    return () => {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+    };
+  }, []);
 
   // AI Image Generation state & handler
   const [isGeneratingImage, setIsGeneratingImage] = useState(false);
